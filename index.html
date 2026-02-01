@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Knowledge Base</title>
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* Smooth hover card animation */
     .card {
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.08);
     }
-    /* Fade-in animation */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .fade-in.visible {
       opacity: 1;
@@ -26,90 +27,151 @@
     }
   </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-800">
 
-  <!-- Header -->
-  <header class="bg-white shadow sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center">
-      <h1 class="text-2xl font-bold text-gray-900">Knowledge Base</h1>
-      <input type="text" id="searchInput" placeholder="Search articles..." 
-             class="mt-3 sm:mt-0 w-full sm:w-1/3 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="bg-white border-b sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-blue-600 rounded-md"></div>
+        <span class="font-semibold text-lg">Help Center</span>
+      </div>
+
+      <!-- Center Menu -->
+      <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+        <a href="#" class="hover:text-gray-900">Home</a>
+        <a href="#" class="hover:text-gray-900">Guides</a>
+        <a href="#" class="hover:text-gray-900">FAQs</a>
+        <a href="#" class="hover:text-gray-900">Changelog</a>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 transition">
+          Contact Support
+        </button>
+      </div>
+
     </div>
-  </header>
+  </nav>
 
-  <!-- Categories -->
-  <main class="max-w-7xl mx-auto px-6 py-10">
-    <h2 class="text-xl font-semibold mb-6">Browse by Category</h2>
-    <div id="categoryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Card Example -->
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="clothing">
+  <!-- ================= HERO / SEARCH ================= -->
+  <section class="bg-white border-b">
+    <div class="max-w-4xl mx-auto px-6 py-14 text-center">
+      <h1 class="text-3xl font-bold mb-3">How can we help?</h1>
+      <p class="text-gray-600 mb-8">
+        Search our knowledge base or browse categories below
+      </p>
+
+      <!-- Search -->
+      <div class="relative max-w-xl mx-auto">
+        <!-- Icon -->
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+             fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
+        </svg>
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search for answers, guides, troubleshooting..."
+          class="w-full pl-12 pr-4 py-4 rounded-lg border text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATEGORIES ================= -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+    <h2 class="text-xl font-semibold mb-6">Browse by category</h2>
+
+    <div id="categoryGrid"
+         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
         <h3 class="font-semibold text-lg mb-2">Clothing</h3>
-        <p class="text-gray-600 text-sm">Questions about sizes, materials, and order info for clothing products.</p>
+        <p class="text-sm text-gray-600">
+          Sizes, fit guides, fabrics, care instructions.
+        </p>
       </div>
 
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="skincare">
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
         <h3 class="font-semibold text-lg mb-2">Skincare & Beauty</h3>
-        <p class="text-gray-600 text-sm">Learn about product use, safety, and skin type suitability.</p>
+        <p class="text-sm text-gray-600">
+          Ingredients, usage, safety, skin types.
+        </p>
       </div>
 
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="electronics">
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
         <h3 class="font-semibold text-lg mb-2">Electronics</h3>
-        <p class="text-gray-600 text-sm">FAQs on features, troubleshooting, shipping, and warranty.</p>
+        <p class="text-sm text-gray-600">
+          Setup, troubleshooting, warranty & specs.
+        </p>
       </div>
 
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="orders">
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
         <h3 class="font-semibold text-lg mb-2">Orders & Shipping</h3>
-        <p class="text-gray-600 text-sm">Track orders, shipping details, returns, and cancellations.</p>
+        <p class="text-sm text-gray-600">
+          Tracking, delivery timelines, address changes.
+        </p>
       </div>
 
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="returns">
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
         <h3 class="font-semibold text-lg mb-2">Returns & Refunds</h3>
-        <p class="text-gray-600 text-sm">All you need to know about exchanges, returns, and refunds.</p>
+        <p class="text-sm text-gray-600">
+          Exchanges, refund status, damaged items.
+        </p>
       </div>
 
-      <div class="card bg-white rounded-lg p-6 shadow hover:bg-blue-50 cursor-pointer fade-in" data-category="account">
-        <h3 class="font-semibold text-lg mb-2">Account & Settings</h3>
-        <p class="text-gray-600 text-sm">Managing accounts, subscriptions, preferences, and security.</p>
+      <div class="card fade-in bg-white p-6 rounded-xl cursor-pointer">
+        <h3 class="font-semibold text-lg mb-2">Account & Billing</h3>
+        <p class="text-sm text-gray-600">
+          Login issues, invoices, subscriptions.
+        </p>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-white mt-12 shadow-inner py-6">
-    <div class="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
-      &copy; 2026 Knowledge Base. All rights reserved.
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t py-6">
+    <div class="text-center text-sm text-gray-500">
+      © 2026 Help Center · Built with Tailwind CSS
     </div>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- ================= JS ================= -->
   <script>
-    // Live search filter
-    const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('#categoryGrid .card');
+    // Search filter
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
 
-    searchInput.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
+    searchInput.addEventListener("input", () => {
+      const term = searchInput.value.toLowerCase();
       cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = text.includes(term) ? 'block' : 'none';
+        card.style.display = card.textContent.toLowerCase().includes(term)
+          ? "block"
+          : "none";
       });
     });
 
-    // Fade-in animation on scroll
-    const faders = document.querySelectorAll('.fade-in');
-    const appearOptions = { threshold: 0.2 };
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    // Fade-in animation
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
           observer.unobserve(entry.target);
         }
       });
-    }, appearOptions);
+    }, { threshold: 0.15 });
 
-    faders.forEach(fader => appearOnScroll.observe(fader));
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
   </script>
+
 </body>
 </html>
